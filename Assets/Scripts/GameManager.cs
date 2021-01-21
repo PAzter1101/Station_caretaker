@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         if (life < 0)
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Menu");
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
