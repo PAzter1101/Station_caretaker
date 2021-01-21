@@ -2,8 +2,7 @@
 
 public class Clearing : MonoBehaviour
 {
-    [SerializeField]
-    public GameManager gm;
+    private GameManager gm;
 
     void Start()
     {
@@ -12,15 +11,17 @@ public class Clearing : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == ("Player"))
+        if (collision.tag == "Player")
         {
             gm.score++;
-            if (gm.life < 100)
+
+            if (gm.pollute > 6)
             {
-                gm.life += 7;
+                gm.pollute -= 7;
             }
+
             gm.RefreshUi();
-            Debug.Log("Clearing!");
+
             Destroy(gameObject);
         }
     }

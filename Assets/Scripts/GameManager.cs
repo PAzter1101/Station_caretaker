@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private int minTime;
-    [SerializeField]
-    private int maxTime;
-
-    [SerializeField]
     private GameObject dirt;
     [SerializeField]
     private int dirtyDamage;
+
+    [SerializeField]
+    private GameObject train;
+    [SerializeField]
+    private GameObject trainStartPosition;
+    private Transform tsp;
 
     [SerializeField]
     public GameObject textScore;
@@ -20,18 +21,31 @@ public class GameManager : MonoBehaviour
     public GameObject textLife;
 
     public int score;
-    public int life;
+    public int pollute;
+
+    public static bool gameOver;
 
     void Start()
     {
-        InvokeRepeating("pollution", 1, 3);
+        gameOver = false;
         score = 0;
+        pollute = 0;
+
+        tsp = trainStartPosition.GetComponent<Transform>();
+
+        InvokeRepeating("CreateTrain", 3, 7);
+        InvokeRepeating("Pollution", 1, 3);
     }
     private void Update()
     {
-        if (life < 0)
+        if (gameOver)
         {
             SceneManager.LoadScene("Menu");
+        }
+
+        if (pollute > 100)
+        {
+            gameOver = true;           
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -39,18 +53,22 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Menu");
         }
     }
+    void CreateTrain()
+    {
+        Instantiate(train, tsp.position, tsp.rotation);
+    }
 
 
-    void pollution()
+    void Pollution()
     {
         Instantiate(dirt, new Vector3(Random.Range(0, 2), Random.Range(-7, 4), -1), Quaternion.Euler(1, 1, 1));
-        life -= dirtyDamage;
+        pollute += dirtyDamage;
         RefreshUi();
     }
 
     public void RefreshUi()
     {
         textScore.GetComponent<Text>().text = "Score: " + score.ToString();
-        textLife.GetComponent<Text>().text = "Life: " + life.ToString();
+        textLife.GetComponent<Text>().text = "Pollute: " + pollute.ToString();
     }
 }
