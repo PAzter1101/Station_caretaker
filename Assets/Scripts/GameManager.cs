@@ -12,8 +12,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject train;
     [SerializeField]
-    private GameObject trainStartPosition;
-    private Transform tsp;
+    private GameObject trainStartPositionR;
+    private Transform tspR;
+    [SerializeField]
+    private GameObject trainStartPositionL;
+    private Transform tspL;
 
     [SerializeField]
     private GameObject textScore;
@@ -43,9 +46,10 @@ public class GameManager : MonoBehaviour
         score = 0;
         pollute = 0;
 
-        tsp = trainStartPosition.GetComponent<Transform>();
+        tspR = trainStartPositionR.GetComponent<Transform>();
+        tspL = trainStartPositionL.GetComponent<Transform>();
 
-        InvokeRepeating("CreateTrain", 3, 7);
+        InvokeRepeating("CreateTrains", 3, 7);
         InvokeRepeating("Pollution", 1, 3);
     }
     private void Update()
@@ -66,16 +70,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CreateTrain()
+    private void CreateTrains()
     {
-        Instantiate(train, tsp.position, tsp.rotation);
+        Instantiate(train, tspR.position, tspR.rotation).GetComponent<Train>().direction = "Up";
+        Instantiate(train, tspL.position, tspL.rotation).GetComponent<Train>().direction = "Down";
     }
 
 
     private void Pollution()
     {
         Instantiate(dirt, new Vector3(Random.Range(-0.5f, 2.5f), Random.Range(-7f, 4f), -1), Quaternion.Euler(1, 1, 1));
-        pollute += dirtyDamage;
+        Instantiate(dirt, new Vector3(Random.Range(-11.5f, -8.5f), Random.Range(-7f, 4f), -1), Quaternion.Euler(1, 1, 1));
+        pollute += dirtyDamage*2;
         RefreshUi();
     }
 

@@ -4,8 +4,16 @@ public class Train : MonoBehaviour
 {
     [SerializeField]
     private int speed;
+    public string direction;
 
-   void Update()
+    private void Start()
+    {
+        if (direction == "Down")
+        {
+            speed *= -1;
+        }
+    }
+    void Update()
     {
         transform.position += (new Vector3(0, speed, 0)) * Time.deltaTime;
     }
@@ -19,9 +27,19 @@ public class Train : MonoBehaviour
 
         if (collision.tag == "Dirt")
         {
-            if (speed > 4)
+            if (direction == "Up")
             {
-                speed -= 1;
+                if (speed > 4)
+                {
+                    speed--;
+                }
+            }
+            if (direction == "Down")
+            {
+                if (speed < -4)
+                {
+                    speed++;
+                }
             }
         }
 
