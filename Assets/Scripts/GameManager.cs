@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
     private Transform tsp;
 
     [SerializeField]
-    public GameObject textScore;
+    private GameObject textScore;
     [SerializeField]
-    public GameObject textLife;
+    private GameObject textLife;
 
     public int score;
     public int pollute;
@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
+
         gameOver = false;
         score = 0;
         pollute = 0;
@@ -53,13 +55,14 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Menu");
         }
     }
-    void CreateTrain()
+
+    private void CreateTrain()
     {
         Instantiate(train, tsp.position, tsp.rotation);
     }
 
 
-    void Pollution()
+    private void Pollution()
     {
         Instantiate(dirt, new Vector3(Random.Range(0, 2), Random.Range(-7, 4), -1), Quaternion.Euler(1, 1, 1));
         pollute += dirtyDamage;
