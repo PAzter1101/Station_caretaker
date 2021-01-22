@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     private void Pollution()
     {
-        Instantiate(dirt, new Vector3(Random.Range(0, 2), Random.Range(-7, 4), -1), Quaternion.Euler(1, 1, 1));
+        Instantiate(dirt, new Vector3(Random.Range(-0.5f, 2.5f), Random.Range(-7f, 4f), -1), Quaternion.Euler(1, 1, 1));
         pollute += dirtyDamage;
         RefreshUi();
     }
