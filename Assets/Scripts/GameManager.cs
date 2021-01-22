@@ -25,9 +25,19 @@ public class GameManager : MonoBehaviour
 
     public static bool gameOver;
 
+    [SerializeField]
+    private GameObject gameOverPanel;
+
     void Start()
     {
+        Time.timeScale = 1;
+
+        //Отключение курсора
         Cursor.visible = false;
+
+        //Отклчение панелей
+        gameObject.GetComponent<GamePause>().pausePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
 
         gameOver = false;
         score = 0;
@@ -42,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         if (gameOver)
         {
-            SceneManager.LoadScene("Menu");
+            GameOver();
         }
 
         if (pollute > 100)
@@ -52,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("Menu");
+            gameObject.GetComponent<GamePause>().Active();
         }
     }
 
@@ -74,4 +84,19 @@ public class GameManager : MonoBehaviour
         textScore.GetComponent<Text>().text = "Score: " + score.ToString();
         textLife.GetComponent<Text>().text = "Pollute: " + pollute.ToString();
     }
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+    void GameOver()
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        gameOverPanel.SetActive(true);
+    }
+    public void ReStart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
 }
