@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         gameObject.GetComponent<GamePause>().pausePanel.SetActive(false);
         gameOverPanel.SetActive(false);
 
+        //Обнуление всего
         gameOver = false;
         score = 0;
         pollute = 0;
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         tspR = trainStartPositionR.GetComponent<Transform>();
         tspL = trainStartPositionL.GetComponent<Transform>();
 
+        //Создание цепочек вызовов функций для поездов и загрязнения
         InvokeRepeating("CreateTrains", 3, 7);
         InvokeRepeating("Pollution", 1, 3);
     }
@@ -81,7 +83,7 @@ public class GameManager : MonoBehaviour
     {
         Instantiate(dirt, new Vector3(Random.Range(-0.5f, 2.5f), Random.Range(-7f, 4f), -1), Quaternion.Euler(1, 1, 1));
         Instantiate(dirt, new Vector3(Random.Range(-11.5f, -8.5f), Random.Range(-7f, 4f), -1), Quaternion.Euler(1, 1, 1));
-        pollute += dirtyDamage*2;
+        pollute += dirtyDamage;
         RefreshUi();
     }
 
@@ -104,5 +106,4 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }

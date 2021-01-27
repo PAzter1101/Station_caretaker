@@ -11,6 +11,8 @@ public class Train : MonoBehaviour
         if (direction == "Down")
         {
             speed *= -1;
+            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(true);
         }
     }
     void Update()
