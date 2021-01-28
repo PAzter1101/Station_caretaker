@@ -3,10 +3,15 @@
 public class GamePause : MonoBehaviour
 {
     private bool isPause;
+    private GameManager gm;
 
     [SerializeField]
     public GameObject pausePanel;
-   
+
+    private void Start()
+    {
+        gm = gameObject.GetComponent<GameManager>();
+    }
     public void Active()
     {
         if (!isPause)
@@ -31,5 +36,10 @@ public class GamePause : MonoBehaviour
         isPause = true;        
         pausePanel.SetActive(true);
         Cursor.visible = true;
+    }
+    public void Save()
+    {
+        PlayerPrefs.SetInt("Score", gm.score);
+        PlayerPrefs.Save();
     }
 }

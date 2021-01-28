@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Load();
+
         Time.timeScale = 1;
 
         //Отключение курсора
@@ -44,7 +46,6 @@ public class GameManager : MonoBehaviour
 
         //Обнуление всего
         gameOver = false;
-        score = 0;
         pollute = 0;
 
         tspR = trainStartPositionR.GetComponent<Transform>();
@@ -105,5 +106,10 @@ public class GameManager : MonoBehaviour
     public void ReStart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void Load()
+    {
+        score = PlayerPrefs.GetInt("Score");
     }
 }
