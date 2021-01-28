@@ -39,7 +39,8 @@ public class GamePause : MonoBehaviour
     }
     public void Save()
     {
-        PlayerPrefs.SetInt("Score", gm.score);
+        PlayerPrefs.SetInt(gm.key, gm.score);
         PlayerPrefs.Save();
+        Debug.Log("Saving score to register. Score: " + gm.score);
     }
 }

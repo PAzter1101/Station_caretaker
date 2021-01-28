@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gameOverPanel;
 
+    [SerializeField]
+    public string key = "Score";
+
     void Start()
     {
         Load();
@@ -110,6 +113,7 @@ public class GameManager : MonoBehaviour
 
     void Load()
     {
-        score = PlayerPrefs.GetInt("Score");
+        score = PlayerPrefs.GetInt(key);
+        Debug.Log("Loading score from the register. Score loading: " + score);
     }
 }
