@@ -4,35 +4,32 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject dirt;
-    [SerializeField]
-    private int dirtyDamage;
+    public static bool gameOver;
 
-    [SerializeField]
-    private GameObject train;
-    [SerializeField]
-    private GameObject trainStartPositionR;
-    private Transform tspR;
-    [SerializeField]
-    private GameObject trainStartPositionL;
+    [Header("Dirty:")]
+    [SerializeField] private GameObject dirt;
+    [SerializeField] private int dirtyDamage;
+
+    [Header("Train:")]
+    [SerializeField] private GameObject train;
+    [SerializeField] private GameObject trainStartPositionR;
+    [SerializeField] private GameObject trainStartPositionL;
+    private Transform tspR;    
     private Transform tspL;
 
-    [SerializeField]
-    private GameObject textScore;
-    [SerializeField]
-    private GameObject textLife;
+    [Header("Text Fields:")]
+    [SerializeField] private GameObject textScore;
+    [SerializeField] private GameObject textPolution;
 
+    [Header("Data:")]
     public int score;
     public int pollute;
 
-    public static bool gameOver;
-
-    [SerializeField]
-    private GameObject gameOverPanel;
-
-    [SerializeField]
+    [Header("Saving Data:")]
     public string key = "Score";
+
+    [Header("Panels:")]
+    [SerializeField] private GameObject gameOverPanel;   
 
     void Start()
     {
@@ -85,6 +82,9 @@ public class GameManager : MonoBehaviour
 
     private void Pollution()
     {
+
+
+
         Instantiate(dirt, new Vector3(Random.Range(-0.5f, 2.5f), Random.Range(-7f, 4f), -1), Quaternion.Euler(1, 1, 1));
         Instantiate(dirt, new Vector3(Random.Range(-11.5f, -8.5f), Random.Range(-7f, 4f), -1), Quaternion.Euler(1, 1, 1));
         pollute += dirtyDamage;
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
     public void RefreshUi()
     {
         textScore.GetComponent<Text>().text = "Score: " + score.ToString();
-        textLife.GetComponent<Text>().text = "Pollute: " + pollute.ToString();
+        textPolution.GetComponent<Text>().text = "Pollute: " + pollute.ToString();
     }
     public void Menu()
     {

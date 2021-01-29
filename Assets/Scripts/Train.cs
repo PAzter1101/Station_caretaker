@@ -2,8 +2,7 @@
 
 public class Train : MonoBehaviour
 {
-    [SerializeField]
-    private int speed;
+    [SerializeField] private int speed;
     public string direction;
 
     private void Start()

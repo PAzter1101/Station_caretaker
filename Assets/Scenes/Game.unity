@@ -6337,9 +6337,10 @@ MonoBehaviour:
   trainStartPositionR: {fileID: 629002250}
   trainStartPositionL: {fileID: 1432144753}
   textScore: {fileID: 1389622756}
-  textLife: {fileID: 1060428619}
+  textPolution: {fileID: 1060428619}
   score: 0
   pollute: 0
+  key: Score
   gameOverPanel: {fileID: 1790698617}
 --- !u!4 &875834334
 Transform:
@@ -8117,7 +8118,7 @@ GameObject:
   - component: {fileID: 1060428622}
   - component: {fileID: 1060428621}
   m_Layer: 5
-  m_Name: Life
+  m_Name: Polution
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,10 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField]
-    private string key = "Score";
-    [SerializeField]
-    private GameObject alertTable;
+    [SerializeField] private string key = "Score";
+    [SerializeField] private GameObject alertTable;
 
     private void Start()
     {

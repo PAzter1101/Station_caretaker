@@ -2,8 +2,7 @@
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private bool activeLight;
+    [SerializeField] private bool activeLight;
 
     void Update()
     {

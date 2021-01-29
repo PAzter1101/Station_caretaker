@@ -2,8 +2,7 @@
 
 public class PlayerSpotlight : MonoBehaviour
 {
-    [SerializeField]
-    private float offset;   //Сдвиг (при необходимости)
+    [SerializeField] private float offset;   //Сдвиг (при необходимости)
 
 
     void Update()
